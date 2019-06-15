@@ -1,2 +1,2 @@
 # zma
-Single-header mathematics library for Zenith
+The Zenith single-header mathematics library
