@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		08086407C438415693757D72 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2AA5541E947148D3807C0AFE /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				1E0D5677AF5E4EB5946543BA /* CMake Rules */,
+			);
+			dependencies = (
+				CD9852E82DDC46CAB036E367 /* PBXTargetDependency */,
+				80F7BB60F8354659A576AEC7 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+		E7054E7AF126439681C41BFF /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 99E87530EBA94B1E8F2A2742 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				3460E65CC9CB49D980E85A86 /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		34F845BDD53C4F37A6379A66 /* /Users/adr7000/zma/includes/zma.hpp */ = {isa = PBXBuildFile; fileRef = FB7CE37E576546E5A9FDE5A8 /* /Users/adr7000/zma/includes/zma.hpp */; };
+		39D51D827F2345A7B13B427E /* /Users/adr7000/zma/tests/zma_unit_tests.cpp */ = {isa = PBXBuildFile; fileRef = 8C6747280A874B29B3626230 /* /Users/adr7000/zma/tests/zma_unit_tests.cpp */; };
+		BC0241FCDC504DBFB14E2578 /* /Users/adr7000/zma/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 147AF6009157438D85EEBD46 /* /Users/adr7000/zma/CMakeLists.txt */; };
+		D49C7305F01D44DB99876095 /* /Users/adr7000/zma/thirdparty/catch.hpp */ = {isa = PBXBuildFile; fileRef = AB0EE675072B4F87B706DD2A /* /Users/adr7000/zma/thirdparty/catch.hpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		1414DAB99DAE447D984AC9E2 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		27D7FDF3F6DD42A294F1CA1E /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		5EF9251FF7CB4B61963694C1 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		78DF9456D20A4466B0793055 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		961B3DD95FFB4A6487EDF7BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3989DD29CC5B473E8DEA8DC4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876DE31E1D2D4F35A68B654F;
+			remoteInfo = zma;
+		};
+		9B2C63ACAEB94287926E1D9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3989DD29CC5B473E8DEA8DC4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7054E7AF126439681C41BFF;
+			remoteInfo = ZERO_CHECK;
+		};
+		FF81CD5720BE4F48B4A26ADB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3989DD29CC5B473E8DEA8DC4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7054E7AF126439681C41BFF;
+			remoteInfo = ZERO_CHECK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		088D537667C74EA696057366 /* /Users/adr7000/zma/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		147AF6009157438D85EEBD46 /* /Users/adr7000/zma/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		7E03C4A8F02D46B0947B7D7F /* zma */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = zma; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C6747280A874B29B3626230 /* /Users/adr7000/zma/tests/zma_unit_tests.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = zma_unit_tests.cpp; path = tests/zma_unit_tests.cpp; sourceTree = SOURCE_ROOT; };
+		AB0EE675072B4F87B706DD2A /* /Users/adr7000/zma/thirdparty/catch.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = catch.hpp; path = thirdparty/catch.hpp; sourceTree = SOURCE_ROOT; };
+		FB7CE37E576546E5A9FDE5A8 /* /Users/adr7000/zma/includes/zma.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = zma.hpp; path = includes/zma.hpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		2D5233E94BFF4F648FF77A49 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				AEDB7285215142DFBE3292D0 /* CMake Rules */,
+				088D537667C74EA696057366 /* /Users/adr7000/zma/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		3CE22E6CCA63425ABC8421A7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E03C4A8F02D46B0947B7D7F /* zma */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4813181894544130A0C74BCE /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C6747280A874B29B3626230 /* /Users/adr7000/zma/tests/zma_unit_tests.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		940F761F332D458286EE3EB6 /* zma */ = {
+			isa = PBXGroup;
+			children = (
+				A40D4ABCA5ED43268E2FF3C5 /* Header Files */,
+				4813181894544130A0C74BCE /* Source Files */,
+				147AF6009157438D85EEBD46 /* /Users/adr7000/zma/CMakeLists.txt */,
+			);
+			name = zma;
+			sourceTree = "<group>";
+		};
+		A40D4ABCA5ED43268E2FF3C5 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				FB7CE37E576546E5A9FDE5A8 /* /Users/adr7000/zma/includes/zma.hpp */,
+				AB0EE675072B4F87B706DD2A /* /Users/adr7000/zma/thirdparty/catch.hpp */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		AEDB7285215142DFBE3292D0 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		BC2B46B54E3F4CCFB0900E76 = {
+			isa = PBXGroup;
+			children = (
+				940F761F332D458286EE3EB6 /* zma */,
+				2D5233E94BFF4F648FF77A49 /* ALL_BUILD */,
+				3CE22E6CCA63425ABC8421A7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		876DE31E1D2D4F35A68B654F /* zma */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD42826B83F741C780A83D29 /* Build configuration list for PBXNativeTarget "zma" */;
+			buildPhases = (
+				AD1A4DBD7FCB4B269258DAE4 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5E12E2B8A60B4227AF5BF099 /* PBXTargetDependency */,
+			);
+			name = zma;
+			productName = zma;
+			productReference = 7E03C4A8F02D46B0947B7D7F /* zma */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3989DD29CC5B473E8DEA8DC4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1020;
+			};
+			buildConfigurationList = 10701FDB8F714F399F78460C /* Build configuration list for PBXProject "zma" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				27D7FDF3F6DD42A294F1CA1E /* Debug */,
+				78DF9456D20A4466B0793055 /* Release */,
+				1414DAB99DAE447D984AC9E2 /* MinSizeRel */,
+				5EF9251FF7CB4B61963694C1 /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = BC2B46B54E3F4CCFB0900E76;
+			projectDirPath = ../;
+			projectRoot = "";
+			targets = (
+				08086407C438415693757D72 /* ALL_BUILD */,
+				E7054E7AF126439681C41BFF /* ZERO_CHECK */,
+				876DE31E1D2D4F35A68B654F /* zma */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E0D5677AF5E4EB5946543BA /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/adr7000/zma/build -f /Users/adr7000/zma/build/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		2B218A40A8B64978A7E4C1C7 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		3460E65CC9CB49D980E85A86 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/adr7000/zma/build -f /Users/adr7000/zma/build/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		9F254E3850C644889F9C605A = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AD1A4DBD7FCB4B269258DAE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39D51D827F2345A7B13B427E /* /Users/adr7000/zma/tests/zma_unit_tests.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5E12E2B8A60B4227AF5BF099 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7054E7AF126439681C41BFF /* ZERO_CHECK */;
+			targetProxy = FF81CD5720BE4F48B4A26ADB /* PBXContainerItemProxy */;
+		};
+		80F7BB60F8354659A576AEC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876DE31E1D2D4F35A68B654F /* zma */;
+			targetProxy = 961B3DD95FFB4A6487EDF7BA /* PBXContainerItemProxy */;
+		};
+		CD9852E82DDC46CAB036E367 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7054E7AF126439681C41BFF /* ZERO_CHECK */;
+			targetProxy = 9B2C63ACAEB94287926E1D9F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0C533625B5DB4A36850407FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/adr7000/zma/build/Debug;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/adr7000/zma/includes,/Users/adr7000/zma/thirdparty);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "   '-std=gnu++14'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = zma;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		1B5F1804E7F0410CBAADA1F0 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		2A626E6FD28D48B6BC97F4F4 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		3E39842A7AB54880AFD3A9D5 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		3F43DDBD85C246CFB99EB0B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/adr7000/zma/build/build;
+			};
+			name = Debug;
+		};
+		537DEFE68E3143A692CE1CDE /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/adr7000/zma/build/MinSizeRel;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/adr7000/zma/includes,/Users/adr7000/zma/thirdparty);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=gnu++14'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = zma;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		54FDAD3FCC704E248103B241 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		5CF758DF983642C19327816F /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/adr7000/zma/build/build;
+			};
+			name = MinSizeRel;
+		};
+		866F41FD90A641A08A1C19C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		8A64A7FB621E4554A027B59F /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/adr7000/zma/build/build;
+			};
+			name = RelWithDebInfo;
+		};
+		8BE8689ED66449B59F99D4DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		9C6812EAF4FD46B58D87C18B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		B01C7043E57F428CB235B501 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/adr7000/zma/build/build;
+			};
+			name = Release;
+		};
+		D343D28D45B842EF8FEA189C /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/adr7000/zma/build/RelWithDebInfo;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/adr7000/zma/includes,/Users/adr7000/zma/thirdparty);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=gnu++14'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = zma;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		DD1B3B7284754FACB2E1A7A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/adr7000/zma/build/Release;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/adr7000/zma/includes,/Users/adr7000/zma/thirdparty);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=gnu++14'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = zma;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		E84E3A70CC224DE7A521D547 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/adr7000/zma/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10701FDB8F714F399F78460C /* Build configuration list for PBXProject "zma" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F43DDBD85C246CFB99EB0B2 /* Debug */,
+				B01C7043E57F428CB235B501 /* Release */,
+				5CF758DF983642C19327816F /* MinSizeRel */,
+				8A64A7FB621E4554A027B59F /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2AA5541E947148D3807C0AFE /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C6812EAF4FD46B58D87C18B /* Debug */,
+				54FDAD3FCC704E248103B241 /* Release */,
+				1B5F1804E7F0410CBAADA1F0 /* MinSizeRel */,
+				2A626E6FD28D48B6BC97F4F4 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		99E87530EBA94B1E8F2A2742 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BE8689ED66449B59F99D4DA /* Debug */,
+				866F41FD90A641A08A1C19C1 /* Release */,
+				E84E3A70CC224DE7A521D547 /* MinSizeRel */,
+				3E39842A7AB54880AFD3A9D5 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DD42826B83F741C780A83D29 /* Build configuration list for PBXNativeTarget "zma" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C533625B5DB4A36850407FA /* Debug */,
+				DD1B3B7284754FACB2E1A7A8 /* Release */,
+				537DEFE68E3143A692CE1CDE /* MinSizeRel */,
+				D343D28D45B842EF8FEA189C /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3989DD29CC5B473E8DEA8DC4 /* Project object */;
+}

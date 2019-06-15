@@ -1,0 +1,3 @@
+/Users/adr7000/zma/build/CMakeFiles/zma.dir
+/Users/adr7000/zma/build/CMakeFiles/ALL_BUILD.dir
+/Users/adr7000/zma/build/CMakeFiles/ZERO_CHECK.dir
