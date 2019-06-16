@@ -1,11 +1,13 @@
+#pragma once
+
 #include <cassert>
 #include <cstdio>
 #include <cmath>
 
 #ifdef DOUBLE_PRECISION
-typedef double Float
+typedef double Float;
 #else 
-typedef float Float
+typedef float Float;
 #endif
 
 #ifdef DEV_BUILD
@@ -15,7 +17,6 @@ typedef float Float
 #endif
 
 namespace zma {
-
 	/* Vectors */
 	template<typename T>
 	class vector2 {
@@ -236,17 +237,17 @@ namespace zma {
 		}
 	};
 
-	template typename<T> inline vector2<T> operator*(T s, const vector2<T>& v) { return v * s; }
-	template typename<T> inline vector3<T> operator*(T s, const vector3<T>& v) { return v * s; }
-	template typename<T> inline vector4<T> operator*(T s, const vector4<T>& v) { return v * s; }
+	template <typename T> inline vector2<T> operator*(T s, const vector2<T>& v) { return v * s; }
+	template <typename T> inline vector3<T> operator*(T s, const vector3<T>& v) { return v * s; }
+	template <typename T> inline vector4<T> operator*(T s, const vector4<T>& v) { return v * s; }
 
-	template typename<T> inline vector2<T> abs(const vector2<T>& v) {
+	template <typename T> inline vector2<T> abs(const vector2<T>& v) {
 		return vector2<T>(std::abs(v.x), std::abs(v.y));
 	}
-	template typename<T> inline vector3<T> abs(const vector3<T>& v) {
+	template <typename T> inline vector3<T> abs(const vector3<T>& v) {
 		return vector3<T>(std::abs(v.x), std::abs(v.y), std::abs(v.z));
 	}
-	template typename<T> inline vector4<T> abs(const vector4<T>& v) {
+	template <typename T> inline vector4<T> abs(const vector4<T>& v) {
 		return vector4<T>(std::abs(v.x), std::abs(v.y), std::abs(v.z), std::abs(v.w));
 	}
 
