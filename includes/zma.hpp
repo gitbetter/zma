@@ -296,6 +296,42 @@ namespace zma {
 	template <typename T> inline vector3<T> normalize(const vector3<T>& v) { return v / v.length(); }
 	template <typename T> inline vector4<T> normalize(const vector4<T>& v) { return v / v.length(); }
 
+	template <typename T> T minComp(const vector2<T>& v) { return std::min(v.x, v.y); }
+	template <typename T> T minComp(const vector3<T>& v) { return std::min(v.x, std::min(v.y, v.z)); }
+	template <typename T> T minComp(const vector4<T>& v) { return std::min(v.x, std::min(v.y, std::min(v.z, v.w)); }
+	template <typename T> T maxComp(const vector2<T>& v) { return std::max(v.x, v.y); }
+	template <typename T> T maxComp(const vector3<T>& v) { return std::max(v.x, std::max(v.y, v.z)); }
+	template <typename T> T maxComp(const vector4<T>& v) { return std::max(v.x, std::max(v.y, std::max(v.z, v.w)); }
+
+	template <typename T> vector2<T> min(const vector2<T>& v1, const vector2<T>& v2) {
+		return vector2<T>(std::min(v1.x, v2.x), std::min(v1.y, v2.y));
+	}
+	template <typename T> vector3<T> min(const vector3<T>& v1, const vector3<T>& v2) {
+		return vector3<T>(std::min(v1.x, v2.x), std::min(v1.y, v2.y), std::min(v1.z, v2.z));
+	}
+	template <typename T> vector4<T> min(const vector4<T>& v1, const vector4<T>& v2) {
+		return vector4<T>(std::min(v1.x, v2.x), std::min(v1.y, v2.y), std::min(v1.z, v2.z), std::min(v1.w, v2.w));
+	}
+	template <typename T> vector2<T> max(const vector2<T>& v1, const vector2<T>& v2) {
+		return vector2<T>(std::max(v1.x, v2.x), std::max(v1.y, v2.y));
+	}
+	template <typename T> vector3<T> max(const vector3<T>& v1, const vector3<T>& v2) {
+		return vector3<T>(std::max(v1.x, v2.x), std::max(v1.y, v2.y), std::max(v1.z, v2.z));
+	}
+	template <typename T> vector4<T> max(const vector4<T>& v1, const vector4<T>& v2) {
+		return vector4<T>(std::max(v1.x, v2.x), std::max(v1.y, v2.y), std::max(v1.z, v2.z), std::max(v1.w, v2.w));
+	}
+
+	template <typename T> vector2<T> permute(const vector2<T>& v, int x, int y) {
+		return vector2<T>(v[x], v[y]);
+	}
+	template <typename T> vector3<T> permute(const vector2<T>& v, int x, int y, int z) {
+		return vector2<T>(v[x], v[y], v[z]);
+	}
+	template <typename T> vector4<T> permute(const vector2<T>& v, int x, int y, int z, int w) {
+		return vector2<T>(v[x], v[y], v[z], v[w]);
+	}
+
 	typedef vector2<Float> vector2f;
 	typedef vector2<int> vector2i;
 	typedef vector3<Float> vector3f;
