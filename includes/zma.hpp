@@ -17,7 +17,11 @@ typedef float Float;
 #endif
 
 namespace zma {
-	/* Vectors */
+
+	/*====================
+			Vectors
+	 =====================*/
+
 	template<typename T>
 	class vector2 {
 	public:
@@ -83,6 +87,9 @@ namespace zma {
 		vector2<T> operator-() const {
 			return vector2<T>(-x, -y);
 		}
+
+		Float squaredLength() const { return x * x + y * y; }
+		Float length() const { return std::sqrt(squaredLength()); }
 
 		bool valid() const {
 			return !std::isnan(x) && !std::isnan(y)
@@ -156,6 +163,9 @@ namespace zma {
 		vector3<T> operator-() const {
 			return vector3<T>(-x, -y, -z);
 		}
+
+		Float squaredLength() const { return x * x + y * y + z * z; }
+		Float length() const { return std::sqrt(squaredLength()); }
 
 		bool valid() const {
 			return !std::isnan(x) && !std::isnan(y) && !std::isnan(z)
@@ -232,6 +242,9 @@ namespace zma {
 			return vector4<T>(-x, -y, -z, -w);
 		}
 
+		Float squaredLength() const { return x * x + y * y + z * z + w * w; }
+		Float length() const { return std::sqrt(squaredLength()); }
+
 		bool valid() const {
 			return !std::isnan(x) && !std::isnan(y) && !std::isnan(z) && !std::isnan(w)
 		}
@@ -250,6 +263,38 @@ namespace zma {
 	template <typename T> inline vector4<T> abs(const vector4<T>& v) {
 		return vector4<T>(std::abs(v.x), std::abs(v.y), std::abs(v.z), std::abs(v.w));
 	}
+
+	template <typename T> inline T dot(const vector2<T>& v1, const vector2<T> v2) {
+		return v1.x * v2.x + v1.y * v2.y;
+	}
+	template <typename T> inline T dot(const vector3<T>& v1, const vector3<T> v2) {
+		return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	}
+	template <typename T> inline T dot(const vector4<T>& v1, const vector4<T> v2) {
+		return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	}
+
+	template <typename T> inline T absdot(const vector2<T>& v1, const vector2<T> v2) {
+		return std::abs(dot(v1, v2));
+	}
+	template <typename T> inline T absdot(const vector3<T>& v1, const vector3<T> v2) {
+		return std::abs(dot(v1, v2));
+	}
+	template <typename T> inline T absdot(const vector4<T>& v1, const vector4<T> v2) {
+		return std::abs(dot(v1, v2));
+	}
+
+	template <typename T> inline vector3<T> cross(const vector3<T>& v, const vector2<T>& v2) {
+		T v1x = v1.x, v1y = v1.y, v1z = v1.z,
+		  v2x = v2.x, v2y = v2.y, v2z = v2.z;
+		return vector3<T>(v1y * v2z - v1z * v2y, 
+			              v1z * v2x - v1x * v2z, 
+						  v1x * v2y - v1y * v2x);
+	}
+
+	template <typename T> inline vector2<T> normalize(const vector2<T>& v) { return v / v.length(); }
+	template <typename T> inline vector3<T> normalize(const vector3<T>& v) { return v / v.length(); }
+	template <typename T> inline vector4<T> normalize(const vector4<T>& v) { return v / v.length(); }
 
 	typedef vector2<Float> vector2f;
 	typedef vector2<int> vector2i;
