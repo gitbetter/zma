@@ -831,6 +831,35 @@ namespace zma {
             return point2<T>((*this)[(corner & 1)].x,
                              (*this)[(corner & 2) ? 1 : 0].y);
         }
+        
+        vector2<T> diagonal() const { return pMax - pMin; }
+        
+        T surfaceArea() const {
+            vector2<T> d = diagonal();
+            return 2 * (d.x * d.y);
+        }
+        
+        int maximumExtent() const {
+            vector2<T> d = diagonal();
+            return d.x > d.y ? 0 : 1;
+        }
+        
+        point2<T> lerp(const point2f& t) const {
+            return point2<T>(::lerp(t.x, pMin.x, pMax.x),
+                             ::lerp(t.y, pMin.y, pMax.y));
+        }
+        
+        vector2<T> offset(const point2<T>& p) const {
+            vector2<T> o = p - pMin;
+            if (pMax.x > pMin.x) o.x /= pMax.x - pMin.x;
+            if (pMax.y > pMin.y) o.y /= pMax.y - pMin.y;
+            return o;
+        }
+        
+        void boundingSphere(point2<T>* center, Float* radius) {
+            *center = (pMin + pMax) / 2;
+            *radius = inside(*center, *this) ? distance(*center, pMax) : 0;
+        }
     }
 
     template <typename T> class bounds3 {
@@ -864,10 +893,140 @@ namespace zma {
                              (*this)[(corner & 2) ? 1 : 0].y,
                              (*this)[(corner & 4) ? 1 : 0].z);
         }
+        
+        vector3<T> diagonal() const { return pMax - pMin; }
+        
+        T surfaceArea() const {
+            vector3<T> d = diagonal();
+            return 2 * (d.x * d.y + d.x * d.z + d.y * d.z);
+        }
+        
+        T volume() const {
+            vector3<T> d = diagonal();
+            return d.x * d.y * d.z;
+        }
+        
+        int maximumExtent() const {
+            vector3<T> d = diagonal();
+            if (d.x > d.y && d.x > d.z)
+                return 0;
+            else if (d.y > d.z)
+                return 1;
+            else return 0;
+        }
+        
+        point3<T> lerp(const point3f& t) const {
+            return point3<T>(::lerp(t.x, pMin.x, pMax.x),
+                             ::lerp(t.y, pMin.y, pMax.y),
+                             ::lerp(t.z, pMin.z, pMax.z));
+        }
+        
+        vector3<T> offset(const point3<T>& p) const {
+            vector3<T> o = p - pMin;
+            if (pMax.x > pMin.x) o.x /= pMax.x - pMin.x;
+            if (pMax.y > pMin.y) o.y /= pMax.y - pMin.y;
+            if (pMax.z > pMin.z) o.z /= pMax.z - pMin.z;
+            return o;
+        }
+        
+        void boundingSphere(point3<T>* center, Float* radius) {
+            *center = (pMin + pMax) / 2;
+            *radius = inside(*center, *this) ? distance(*center, pMax) : 0;
+        }
+    }
+                                                                           
+    template <typename T> bounds2<T> union(const bounds2<T>& b, const point2<T> &p) {
+        return bounds2<T>(point2<T>(std::min(b.pMin.x, p.x),
+                                    std::min(b.pMin.y, p.y)),
+                          point2<T>(std::max(b.pMax.x, p.x),
+                                    std::max(b.pMax.y, p.y)));
+    }
+    template <typename T> bounds2<T> union(const bounds3<T>& b1, const bounds3<T>& b2) {
+        return bounds2<T>(point2<T>(std::min(b1.pMin.x, b2.pMin.x),
+                                    std::min(b1.pMin.y, b2.pMin.y)),
+                          point2<T>(std::max(b1.pMax.x, b2.pMax.x),
+                                    std::max(b1.pMax.y, b2.pMax.y)));
+    }
+    template <typename T> bounds3<T> union(const bounds3<T>& b, const point3<T> &p) {
+        return bounds2<T>(point3<T>(std::min(b.pMin.x, p.x),
+                                    std::min(b.pMin.y, p.y),
+                                    std::min(b.pMin.z, p.z)),
+                          point3<T>(std::max(b.pMax.x, p.x),
+                                    std::max(b.pMax.y, p.y),
+                                    std::max(b.pMax.z, p.z)));
+    }
+    template <typename T> bounds3<T> union(const bounds3<T>& b1, const bounds3<T>& b2) {
+        return bounds2<T>(point3<T>(std::min(b1.pMin.x, b2.pMin.x),
+                                    std::min(b1.pMin.y, b2.pMin.y),
+                                    std::min(b1.pMin.z, b2.pMin.z)),
+                          point3<T>(std::max(b1.pMax.x, b2.pMax.x),
+                                    std::max(b1.pMax.y, b2.pMax.y),
+                                    std::max(b1.pMax.z, b2.pMax.z)));
+    }
+                                                                           
+    template <typename T> bounds2<T> intersection(const bounds2<T>& b1, const bounds2<T> b2) {
+        return bounds2<T>(point2<T>(std::max(b1.pMin.x, b2.pMin.x),
+                                    std::max(b1.pMin.y, b2.pMin.y)),
+                          point2<T>(std::min(b1.pMax.x, b2.pMax.x),
+                                    std::min(b1.pMax.y, b2.pMax.y)));
+    }
+    template <typename T> bounds3<T> intersection(const bounds3<T>& b1, const bounds3<T>& b2) {
+        return bounds2<T>(point3<T>(std::max(b1.pMin.x, b2.pMin.x),
+                                    std::max(b1.pMin.y, b2.pMin.y),
+                                    std::max(b1.pMin.z, b2.pMin.z)),
+                          point3<T>(std::min(b1.pMax.x, b2.pMax.x),
+                                    std::min(b1.pMax.y, b2.pMax.y),
+                                    std::min(b1.pMax.z, b2.pMax.z)));
+    }
+                                                                           
+    template <typename T> bool overlaps(const bounds2<T>& b1, const bounds2<T>& b2) {
+        bool x = (b1.pMax.x >= b2.pMin.x) && (b1.pMin.x <= b2.pMax.x);
+        bool y = (b1.pMax.y >= b2.pMin.y) && (b1.pMin.y <= b2.pMax.y);
+        return x && y;
+    }
+    template <typename T> bool overlaps(const bounds3<T>& b1, const bounds3<T>& b2) {
+        bool x = (b1.pMax.x >= b2.pMin.x) && (b1.pMin.x <= b2.pMax.x);
+        bool y = (b1.pMax.y >= b2.pMin.y) && (b1.pMin.y <= b2.pMax.y);
+        bool z = (b1.pMax.z >= b2.pMin.z) && (b1.pMin.z <= b2.pMax.z);
+        return x && y && z;
+    }
+                                                                           
+    template <typename T> bool inside(const point2<T>& p, const bounds2<T>& b) {
+        return (p.x >= b.pMin.x && p.x <= b.pMax.x &&
+                p.y >= b.pMin.y && p.y <= b.pMax.y);
+    }
+    template <typename T> bool inside(const point3<T>& p, const bounds3<T>& b) {
+        return (p.x >= b.pMin.x && p.x <= b.pMax.x &&
+                p.y >= b.pMin.y && p.y <= b.pMax.y &&
+                p.z >= b.pMin.z && p.z <= b.pMax.z);
+    }
+    template <typename T> bool insideExclusive(const point2<T>& p, const bounds2<T>& b) {
+        return (p.x >= b.pMin.x && p.x < b.pMax.x &&
+                p.y >= b.pMin.y && p.y < b.pMax.y);
+    }
+    template <typename T> bool insideExclusive(const point3<T>& p, const bounds3<T>& b) {
+        return (p.x >= b.pMin.x && p.x < b.pMax.x &&
+                p.y >= b.pMin.y && p.y < b.pMax.y &&
+                p.z >= b.pMin.z && p.z < b.pMax.z);
+    }
+                                                                           
+    template <typename T, typename U> inline bounds2<T> expand(const bounds2<T>& b, U delta) {
+        return bounds2<T>(b.pMin - vector2<T>(delta, delta),
+                          b.pMax + vector2<T>(delta, delta));
+    }
+    template <typename T, typename U> inline bounds3<T> expand(const bounds3<T>& b, U delta) {
+        return bounds3<T>(b.pMin - vector3<T>(delta, delta, delta),
+                          b.pMax + vector3<T>(delta, delta, delta));
     }
         
     typedef bounds2<Float> bounds2f;
     typedef bounds2<int> bounds2i;
     typedef bounds3<Float> bounds3f;
     typedef bounds3<int> bounds3i;
+                                                                           
+    /*====================
+         Transforms
+    =====================*/
+        
+    
 };
