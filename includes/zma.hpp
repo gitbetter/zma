@@ -18,6 +18,8 @@ typedef float Float;
 
 namespace zma {
     
+    static constexpr Float infinity = std::numeric_limits<Float>::infinity();
+    
     /*====================
             Vectors
      =====================*/
@@ -31,6 +33,20 @@ namespace zma {
         vector2(T x, T y) : x(x), y(y) {
             Assert(valid());
         }
+        vector2<T>(const vector2<T>& v) {
+            Assert(v.valid());
+            x = v.x; y = v.y;
+        }
+        vector2<T>& operator=(const vector2<T>& v) {
+            Assert(v.valid());
+            x = v.x; y = v.y;
+            return *this;
+        }
+        
+        friend std::ostream& operator<<(std::ostream& os, const vector2<T>& v) {
+            os << "[" << v.x << ", " << v.y << "]";
+            return os;
+        }
         
         T operator[](int i) const {
             Assert(i >= 0 && i < 2);
@@ -42,6 +58,13 @@ namespace zma {
             Assert(i >= 0 && i < 2);
             if (i == 0) return x;
             return y;
+        }
+        
+        bool operator==(const vector2<T>& v) const {
+            return x == v.x && y == v.y;
+        }
+        bool operator!=(const vector2<T>& v) const {
+            return x != v.x || y != v.y;
         }
         
         vector2<T> operator+(const vector2<T>& v) const {
@@ -105,6 +128,20 @@ namespace zma {
         vector3(T x, T y, T z) : x(x), y(y), z(z) {
             Assert(valid());
         }
+        vector3<T>(const vector3<T>& v) {
+            Assert(v.valid());
+            x = v.x; y = v.y; z = v.z;
+        }
+        vector3<T>& operator=(const vector3<T>& v) {
+            Assert(v.valid());
+            x = v.x; y = v.y; z = v.z;
+            return *this;
+        }
+        
+        friend std::ostream& operator<<(std::ostream& os, const vector3<T>& v) {
+            os << "[" << v.x << ", " << v.y << ", " << v.z << "]";
+            return os;
+        }
         
         T operator[](int i) const {
             Assert(i >= 0 && i < 3);
@@ -118,6 +155,13 @@ namespace zma {
             if (i == 0) return x;
             if (i == 0) return y;
             return z;
+        }
+        
+        bool operator==(const vector3<T>& v) const {
+            return x == v.x && y == v.y && z == v.z;
+        }
+        bool operator!=(const vector3<T>& v) const {
+            return x != v.x || y != v.y || z != v.z;
         }
         
         vector3<T> operator+(const vector3<T>& v) const {
@@ -181,6 +225,20 @@ namespace zma {
         vector4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w) {
             Assert(valid());
         }
+        vector4<T>(const vector4<T>& v) {
+            Assert(v.valid());
+            x = v.x; y = v.y; z = v.z; w = v.w;
+        }
+        vector4<T>& operator=(const vector4<T>& v) {
+            Assert(v.valid());
+            x = v.x; y = v.y; z = v.z; w = v.w;
+            return *this;
+        }
+        
+        friend std::ostream& operator<<(std::ostream& os, const vector4<T>& v) {
+            os << "[" << v.x << ", " << v.y << ", " << v.z << ", " << v.w << "]";
+            return os;
+        }
         
         T operator[](int i) const {
             Assert(i >= 0 && i < 4);
@@ -196,6 +254,13 @@ namespace zma {
             if (i == 1) return y;
             if (i == 2) return z;
             return w;
+        }
+        
+        bool operator==(const vector4<T>& v) const {
+            return x == v.x && y == v.y && z == v.z && w == v.w;
+        }
+        bool operator!=(const vector4<T>& v) const {
+            return x != v.x || y != v.y || z != v.z || w != v.w;
         }
         
         vector4<T> operator+(const vector4<T>& v) const {
@@ -360,6 +425,15 @@ namespace zma {
         : x(x), y(y) {
             Assert(valid());
         }
+        point2<T>(const point2<T>& p) {
+            Assert(p.valid());
+            x = p.x; y = p.y;
+        }
+        point2<T>& operator=(const point2<T>& p) {
+            Assert(p.valid());
+            x = p.x; y = p.y;
+            return *this;
+        }
         explicit point2(const point3<T>& p)
         : x(p.x), y(p.y) {
             Assert(valid());
@@ -370,6 +444,30 @@ namespace zma {
         }
         template <typename U> explicit vector2<U>() const {
             return vector2<U>(x, y);
+        }
+        
+        friend std::ostream& operator<<(std::ostream& os, const point2<T>& p) {
+            os << "[" << p.x << ", " << p.y << "]";
+            return os;
+        }
+        
+        T operator[](int i) const {
+            Assert(i >= 0 && i < 3);
+            if (i == 0) return x;
+            return y;
+        }
+        
+        T& operator[](int i) {
+            Assert(i >= 0 && i < 3);
+            if (i == 0) return x;
+            return y;
+        }
+        
+        bool operator==(const point2<T>& p) const {
+            return x == p.x && y == p.y;
+        }
+        bool operator!=(const point2<T>& p) const {
+            return x != p.x || y != p.y;
         }
         
         point2<T> operator+(const vector2<T>& v) const {
@@ -404,6 +502,15 @@ namespace zma {
         : x(x), y(y), z(z) {
             Assert(valid());
         }
+        point3<T>(const point3<T>& p) {
+            Assert(p.valid());
+            x = p.x; y = p.y; z = p.z;
+        }
+        point3<T>& operator=(const point3<T>& p) {
+            Assert(p.valid());
+            x = p.x; y = p.y; z = p.z;
+            return *this;
+        }
         template <typename U> explicit point3(const point3<U>& p)
         : x((T)p.x), y((T)p.y), z((T)p.z) {
             Assert(valid());
@@ -412,11 +519,44 @@ namespace zma {
             return vector3<U>(x, y, z);
         }
         
+        friend std::ostream& operator<<(std::ostream& os, const point3<T>& p) {
+            os << "[" << p.x << ", " << p.y << ", " << p.z << "]";
+            return os;
+        }
+        
+        T operator[](int i) const {
+            Assert(i >= 0 && i < 3);
+            if (i == 0) return x;
+            if (i == 1) return y;
+            return z;
+        }
+        
+        T& operator[](int i) {
+            Assert(i >= 0 && i < 3);
+            if (i == 0) return x;
+            if (i == 0) return y;
+            return z;
+        }
+        
+        bool operator==(const point3<T>& p) const {
+            return x == p.x && y == p.y && z == p.z;
+        }
+        bool operator!=(const point3<T>& p) const {
+            return x != p.x || y != p.y || z != p.z;
+        }
+        
         point3<T> operator+(const vector3<T>& v) const {
             return point2<T>(x + v.x, y + v.y, z + v.z);
         }
         point3<T>& operator+=(const vector3<T>& v) {
             x += v.x; y += v.y; z += v.z;
+            return *this;
+        }
+        point3<T> operator+(const point3<T>& p) const {
+            return point2<T>(x + p.x, y + p.y, z + p.z);
+        }
+        point3<T>& operator+=(const point3<T>& p) {
+            x += p.x; y += p.y; z += p.z;
             return *this;
         }
         vector3<T> operator-(const point3<T>& p) const {
@@ -511,8 +651,43 @@ namespace zma {
         normal3(T x, T y, T z) : x(x), y(y), z(z) {
             Assert(valid());
         }
+        normal3<T>(const normal3<T>& n) {
+            Assert(n.valid());
+            x = n.x; y = n.y; z = n.z;
+        }
+        normal3<T>& operator=(const normal3<T>& n) {
+            Assert(n.valid());
+            x = n.x; y = n.y; z = n.z;
+            return *this;
+        }
         explicit normal3<T>(const vector3<T>& v) : x(v.x), y(v.y), z(v.z) {
             Assert(v.valid());
+        }
+        
+        friend std::ostream& operator<<(std::ostream& os, const normal3<T>& n) {
+            os << "[" << v.x << ", " << v.y << ", " << v.z << "]";
+            return os;
+        }
+        
+        T operator[](int i) const {
+            Assert(i >= 0 && i < 3);
+            if (i == 0) return x;
+            if (i == 1) return y;
+            return z;
+        }
+        
+        T& operator[](int i) {
+            Assert(i >= 0 && i < 3);
+            if (i == 0) return x;
+            if (i == 0) return y;
+            return z;
+        }
+        
+        bool operator==(const normal3<T>& n) const {
+            return x == n.x && y == n.y && z == n.z;
+        }
+        bool operator!=(const normal3<T>& n) const {
+            return x != n.x || y != n.y || z != n.z;
         }
         
         normal3<T> operator-() const {
@@ -563,6 +738,62 @@ namespace zma {
     template <typename T> inline vector3<T>::vector3(const normal3<T>& n) : x(n.x), y(n.y), z(n.z) {
         Assert(n.valid());
     }
+                                                                           
+    template <typename T> inline normal3<T> faceForward(const normal3<T>& n, const vector3<T>& v) {
+        return (dot(n, v) < 0) ? -n : n;
+    }
         
     typedef normal3<Float> normal3f;
+                                                                           
+    /*====================
+             Rays
+     =====================*/
+        
+    class Ray {
+    public:
+        point3f o;
+        vector3f d;
+        mutable Float tMax;
+        Float time;
+        const Medium* medium;
+        
+        Ray() : tMax(infinity), time(0.f), medium(nullptr) { }
+        Ray(const point3f& o, const vector3f& d, Float tMax = infinity, Float time = 0.f, const Medium* medium = nullptr)
+        : o(o), d(d), tMax(tMax), time(time), medium(medium) { }
+        
+        point3f operator()(Float t) const { return o + d * t;}
+        
+        friend std::ostream& operator<<(std::ostream& os, const Ray& ray) {
+            os << "[o=" << ray.o << ", d=" << ray.d << ", tMax=" << ray.tMax << ", time=" << ray.time << "]";
+        }
+        
+        bool valid() {
+            return o.valid() && d.valid() && !std::isnan(tMax);
+        }
+    };
+                                                                           
+    class RayDifferential : public Ray {
+    public:
+        bool hasDifferentials;
+        point3f rxOrigin, ryOrigin;
+        vector3f rxDirection, ryDirection;
+        
+        RayDifferential() { hasDifferentials = false; }
+        RayDifferential(const point3f& o, const vector3f& d, Float tMax = infinity, Float time = 0.f, const Medium* medium = nullptr)
+        : Ray(o, d, tMax, time, medium) { hasDifferentials = false; }
+        RayDifferential(const Ray& ray) : Ray(ray) {
+            hasDifferentials = false;
+        }
+        
+        void scaleDifferentials(Float s) {
+            rxOrigin = o + (rxOrigin - o) * s;
+            ryOrigin = o + (ryOrigin - o) * s;
+            rxDirection = d + (rxDirection - d) * s;
+            ryDirection = d + (ryDirection - d) * s;
+        }
+        
+        bool valid() {
+            return Ray::valid() && (hasDiffentials ? (rxOrigin.valid() && ryOrigin.valid() && rxDirection.valid() && ryDirection.valid()) : true)
+        }
+    };
 };
