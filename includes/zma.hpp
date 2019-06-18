@@ -796,4 +796,78 @@ namespace zma {
             return Ray::valid() && (hasDiffentials ? (rxOrigin.valid() && ryOrigin.valid() && rxDirection.valid() && ryDirection.valid()) : true)
         }
     };
+                                                                           
+    /*====================
+        Bounding Boxes
+    =====================*/
+        
+    template <typename T> class bounds2 {
+    public:
+        point2<T> pMin, pMax;
+        
+        bounds2() {
+            T min = std::numeric_limits<T>::lowest();
+            T max = std::numeric_limits<T>::max();
+            pMin = point2<T>(max, max);
+            pMax = point2<T>(min, min);
+        }
+        bounds2(const point2<T>& p) : pMin(p), pMax(p) { }
+        bounds2(const point2<T>& p1, const point2<T> p2)
+        : pMin(std::min(p1.x, p2.x), std::min(p1.y, p2.y)),
+          pMax(std::max(p1.x, p2.x), std::max(p1.y, p2.y)) { }
+        
+        const point2<T>& operator[](int i) const {
+            Assert(i >= 0 && i < 2);
+            if (i == 0) return point2<T>(pMin);
+            return point2<T>(pMax);
+        }
+        point2<T>& operator[](int i) {
+            Assert(i >= 0 && i < 2);
+            if (i == 0) return pMin;
+            return pMax;
+        }
+        
+        point2<T> corner(int corner) const {
+            return point2<T>((*this)[(corner & 1)].x,
+                             (*this)[(corner & 2) ? 1 : 0].y);
+        }
+    }
+
+    template <typename T> class bounds3 {
+    public:
+        point3<T> pMin, pMax;
+        
+        bounds3() {
+            T min = std::numeric_limits<T>::lowest();
+            T max = std::numeric_limits<T>::max();
+            pMin = point3<T>(max, max, max);
+            pMax = point3<T>(min, min, min);
+        }
+        bounds3(const point3<T>& p) : pMin(p), pMax(p) { }
+        bounds3(const point3<T>& p1, const point3<T> p2)
+        : pMin(std::min(p1.x, p2.x), std::min(p1.y, p2.y), std::min(p1.z, p2.z)),
+          pMax(std::max(p1.x, p2.x), std::max(p1.y, p2.y), std::max(p1.z, p2.z)) { }
+        
+        const point3<T>& operator[](int i) const {
+            Assert(i >= 0 && i < 2);
+            if (i == 0) return point3<T>(pMin);
+            return point3<T>(pMax);
+        }
+        point3<T>& operator[](int i) {
+            Assert(i >= 0 && i < 2);
+            if (i == 0) return pMin;
+            return pMax;
+        }
+        
+        point3<T> corner(int corner) const {
+            return point3<T>((*this)[(corner & 1)].x,
+                             (*this)[(corner & 2) ? 1 : 0].y,
+                             (*this)[(corner & 4) ? 1 : 0].z);
+        }
+    }
+        
+    typedef bounds2<Float> bounds2f;
+    typedef bounds2<int> bounds2i;
+    typedef bounds3<Float> bounds3f;
+    typedef bounds3<int> bounds3i;
 };
