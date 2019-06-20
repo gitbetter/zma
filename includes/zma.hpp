@@ -1,8 +1,9 @@
 #pragma once
 
 #include <cassert>
-#include <cstdio>
 #include <cmath>
+#include <iostream>
+#include <limits>
 
 #ifdef DOUBLE_PRECISION
 typedef double Float;
@@ -23,9 +24,30 @@ namespace zma {
      =====================*/
     
     static constexpr Float infinity = std::numeric_limits<Float>::infinity();
+    static const Float pi = 3.14159265358979323846;
+    static const Float piOv2 = 1.57079632679489661923;
+    static const Float piOv4 = 0.78539816339744830961;
+    static const Float invPi = 0.31830988618379067154;
+    static const Float inv2Pi = 0.15915494309189533577;
+    static const Float inv4Pi = 0.07957747154594766788;
+    static const Float sqrt2 = 1.41421356237309504880;
     
     inline Float lerp(Float t, Float v1, Float v2) {
         return (1 - t) * v1 + t * v2;
+    }
+    
+    template <typename T, typename U, typename V> inline T clamp(T val, U low, V high) {
+        if (val < low) return low;
+        else if (val > high) return high;
+        else return val;
+    }
+    
+    inline Float rads(Float degs) {
+        return (pi / 180) * degs;
+    }
+    
+    inline Float degs(Float rads) {
+        return (180 / pi) * rads;
     }
     
     inline bool quadratic(Float a, Float b, Float c, Float* t0, Float* t1) {
@@ -1191,6 +1213,69 @@ namespace zma {
         }
         friend transform transpose(const transform& t) {
             return transform(transpose(t.m), transpose(t.mInv));
+        }
+        
+        transform translate(const vector3f& delta) {
+            matrix4x4 m(1, 0, 0, delta.x,
+                        0, 1, 0, delta.y,
+                        0, 0, 1, delta.z,
+                        0, 0, 0, 1);
+            matrix4x4 mInv(1, 0, 0, -delta.x,
+                           0, 1, 0, -delta.y,
+                           0, 0, 1, -delta.z,
+                           0, 0, 0, 1);
+            return transform(m, mInv);
+        }
+        
+        transform scale(Float x, Float y, Float z) {
+            matrix4x4 m(x, 0, 0, 0,
+                        0, y, 0, 0,
+                        0, 0, z, 0,
+                        0, 0, 0, 1);
+            matrix4x4 mInv(1/x, 0, 0, 0,
+                           0, 1/y, 0, 0,
+                           0, 0, 1/z, 0,
+                           0, 0, 0, 1);
+            return transform(m, mInv);
+        }
+        
+        transform rotateX(Float theta) {
+            Float sinTheta = std::sin(rads(theta));
+            Float cosTheta = std::cos(rads(theta));
+            matrix4x4 m(1,        0,         0, 0,
+                        0, cosTheta, -sinTheta, 0,
+                        0, sinTheta,  cosTheta, 0,
+                        0,        0,         0, 1);
+            return transform(m, transpose(m));
+        }
+        
+        transform rotateY(Float theta) {
+            Float sinTheta = std::sin(rads(theta));
+            Float cosTheta = std::cos(rads(theta));
+            matrix4x4 m(cosTheta,  0, sinTheta, 0,
+                        0,         1,        0, 0,
+                        -sinTheta, 0, cosTheta, 0,
+                        0,         0,         0, 1);
+            return transform(m, transpose(m));
+        }
+        
+        transform rotateZ(Float theta) {
+            Float sinTheta = std::sin(rads(theta));
+            Float cosTheta = std::cos(rads(theta));
+            matrix4x4 m(cosTheta, -sinTheta, 0, 0,
+                        sinTheta,  cosTheta, 0, 0,
+                        0,                0, 1, 0,
+                        0,                0, 0, 1);
+            return transform(m, transpose(m));
+        }
+        
+        bool hasScale() const {
+            Float la2 = (*this)(vector3f(1, 0, 0)).squaredLength();
+            Float lb2 = (*this)(vector3f(0, 1, 0)).squaredLength();
+            Float lc2 = (*this)(vector3f(0, 0, 1)).squaredLength();
+#define NOT_ONE(x) ((x) < .999f || (x) > 1.001f)
+            return (NOT_ONE(la2) || NOT_ONE(lb2) || NOT_ONE(lc2));
+#undef NOT_ONE
         }
         
     private:
