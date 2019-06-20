@@ -1332,4 +1332,58 @@ namespace zma {
     private:
         matrix4x4 m, mInv;
     }
+                                                                           
+    template <typename T> inline point3<T> transform::operator()(const point3<T>& p) const {
+        T x = p.x, y = p.y, z = p.z;
+        T xp = m.m[0][0] * x + m.m[0][1] * y + m.m[0][2] * z + m.m[0][3];
+        T yp = m.m[1][0] * x + m.m[1][1] * y + m.m[1][2] * z + m.m[1][3];
+        T zp = m.m[2][0] * x + m.m[2][1] * y + m.m[2][2] * z + m.m[2][3];
+        T wp = m.m[3][0] * x + m.m[3][1] * y + m.m[3][2] * z + m.m[3][3];
+        if (wp == 1) return point3<T>(xp, yp, zp);
+        else return point3<T>(xp, yp, zp) / wp;
+    }
+                                                                           
+    template <typename T> inline vector3<T> transform::operator()(const vector3<T>& v) const {
+        T x = v.x, y = v.y, z = v.z;
+        return vector3<T>(m.m[0][0] * x + m.m[0][1] * y + m.m[0][2] * z,
+                          m.m[1][0] * x + m.m[1][1] * y + m.m[1][2] * z,
+                          m.m[2][0] * x + m.m[2][1] * y + m.m[2][2] * z);
+    }
+                                                                           
+    template <typename T> inline normal3<T> transform::operator()(const normal3<T>& n) const {
+        T x = n.x, y = n.y, z = n.z;
+        return vector3<T>(mInv.m[0][0] * x + mInv.m[1][0] * y + mInv.m[2][0] * z,
+                          mInv.m[0][1] * x + mInv.m[1][1] * y + mInv.m[2][1] * z,
+                          mInv.m[0][2] * x + mInv.m[1][2] * y + mInv.m[2][2] * z);
+    }
+                                                                           
+    inline ray transform::operator()(const Ray& n) const {
+        point3f o = (*this)(r.o);
+        vector3f d = (*this)(r.d);
+        return Ray(o, d, r.tMax, r.time, r.medium);
+    }
+                                                                           
+    bounds3f transform::operator()(const transform3f& b) const {
+        const transform& m = *this;
+        bounds3f ret(m(point3f(b.pMin.x, b.pMin.y, b.pMin.z)));
+        ret = union(ret, m(point3f(b.pMax.x, b.pMin.y, b.pMin.z)));
+        ret = union(ret, m(point3f(b.pMin.x, b.pMax.y, b.pMin.z)));
+        ret = union(ret, m(point3f(b.pMin.x, b.pMin.y, b.pMax.z)));
+        ret = union(ret, m(point3f(b.pMin.x, b.pMax.y, b.pMax.z)));
+        ret = union(ret, m(point3f(b.pMax.x, b.pMax.y, b.pMin.z)));
+        ret = union(ret, m(point3f(b.pMax.x, b.pMin.y, b.pMax.z)));
+        ret = union(ret, m(point3f(b.pMax.x, b.pMax.y, b.pMax.z)));
+        return ret;
+    }
+                                                                           
+    transform transform::operator*(const transform& t2) const {
+        return transform(m * t2.m, t2.mInv * mInv);
+    }
+                                                                           
+    bool transform::swapsHandedness() const {
+        Float det = m.m[0][0] * (m.m[1][1] * m.m[2][2] - m.m[1][2] * m.m[2][1]) -
+                    m.m[0][1] * (m.m[1][0] * m.m[2][2] - m.m[1][2] * m.m[2][0]) +
+                    m.m[0][2] * (m.m[1][0] * m.m[2][1] - m.m[1][1] * m.m[2][0]);
+        return det < 0;
+    }
 };
