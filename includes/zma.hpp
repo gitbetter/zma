@@ -1239,9 +1239,9 @@ namespace zma {
             return transform(m, mInv);
         }
         
-        transform rotateX(Float theta) {
-            Float sinTheta = std::sin(rads(theta));
-            Float cosTheta = std::cos(rads(theta));
+        transform rotateX(Float angle) {
+            Float sinTheta = std::sin(rads(angle));
+            Float cosTheta = std::cos(rads(angle));
             matrix4x4 m(1,        0,         0, 0,
                         0, cosTheta, -sinTheta, 0,
                         0, sinTheta,  cosTheta, 0,
@@ -1249,9 +1249,9 @@ namespace zma {
             return transform(m, transpose(m));
         }
         
-        transform rotateY(Float theta) {
-            Float sinTheta = std::sin(rads(theta));
-            Float cosTheta = std::cos(rads(theta));
+        transform rotateY(Float angle) {
+            Float sinTheta = std::sin(rads(angle));
+            Float cosTheta = std::cos(rads(angle));
             matrix4x4 m(cosTheta,  0, sinTheta, 0,
                         0,         1,        0, 0,
                         -sinTheta, 0, cosTheta, 0,
@@ -1259,14 +1259,65 @@ namespace zma {
             return transform(m, transpose(m));
         }
         
-        transform rotateZ(Float theta) {
-            Float sinTheta = std::sin(rads(theta));
-            Float cosTheta = std::cos(rads(theta));
+        transform rotateZ(Float angle) {
+            Float sinTheta = std::sin(rads(angle));
+            Float cosTheta = std::cos(rads(angle));
             matrix4x4 m(cosTheta, -sinTheta, 0, 0,
                         sinTheta,  cosTheta, 0, 0,
                         0,                0, 1, 0,
                         0,                0, 0, 1);
             return transform(m, transpose(m));
+        }
+        
+        transform rotate(Float angle, const vector3f& axis) {
+            vector3f a = normalize(axis);
+            Float sinTheta = std::sin(rads(angle));
+            Float cosTheta = std::cos(rads(angle));
+            matrix4x4 m;
+            
+            m.m[0][0] = a.x * a.x + (1 - a.x * a.x) * cosTheta;
+            m.m[0][1] = a.x * a.y * (1 - cosTheta) - a.z * sinTheta;
+            m.m[0][2] = a.x * a.z * (1 - cosTheta) + a.y * sinTheta;
+            m.m[0][3] = 0;
+            
+            m.m[1][0] = a.x * a.y * (1 - cosTheta) + a.z * sinTheta;
+            m.m[1][1] = a.y * a.y + (1 - a.y * a.y) * cosTheta;
+            m.m[1][2] = a.y * a.z * (1 - cosTheta) - a.x * sinTheta;
+            m.m[1][3] = 0;
+            
+            m.m[1][0] = a.x * a.z * (1 - cosTheta) - a.y * sinTheta;
+            m.m[1][1] = a.y * a.z * (1 - cosTheta) + a.x * sinTheta;
+            m.m[1][2] = a.z * a.z + (1 - a.z * a.z) * cosTheta;
+            m.m[1][3] = 0;
+            
+            return transform(m, transpose(m));
+        }
+        
+        transform lookat(const point3f& pos, const point3f& look, const vector3f& up) {
+            matrix4x4 cameraToWorld;
+            
+            cameraToWorld.m[0][3] = pos.x;
+            cameraToWorld.m[1][3] = pos.y;
+            cameraToWorld.m[2][3] = pos.z;
+            cameraToWorld.m[3][3] = 1;
+            
+            vector3f dir = normalize(look - pos);
+            vector3f right = normalize(cross(normalize(up), dir));
+            vector3f newUp = cross(dir, right);
+            cameraToWorld.m[0][0] = right.x;
+            cameraToWorld.m[1][0] = right.x;
+            cameraToWorld.m[2][0] = right.x;
+            cameraToWorld.m[3][0] = 0;
+            cameraToWorld.m[0][1] = newUp.x;
+            cameraToWorld.m[1][1] = newUp.x;
+            cameraToWorld.m[2][1] = newUp.x;
+            cameraToWorld.m[3][1] = 0;
+            cameraToWorld.m[0][2] = dir.x;
+            cameraToWorld.m[1][2] = dir.x;
+            cameraToWorld.m[2][2] = dir.x;
+            cameraToWorld.m[3][2] = 0;
+            
+            return transform(inverse(cameraToWorld), cameraToWorld);
         }
         
         bool hasScale() const {
